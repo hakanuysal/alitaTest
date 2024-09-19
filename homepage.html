@@ -1,197 +1,218 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Explore Mountain Majesty</title>
-     <style>
-         body {
-             font-family: Arial, sans-serif;
-         }
-         header {
-             background: #333;
-             color: #fff;
-             padding: 10px 20px;
-             text-align: center;
-         }
-         nav {
-             display: flex;
-             justify-content: space-around;
-             background: #555;
-             padding: 10px 0;
-         }
-         nav a {
-             color: white;
-             text-decoration: none;
-         }
-         section {
-             padding: 20px;
-             margin: 10px;
-             border: 1px solid #ccc;
-         }
-         footer {
-             text-align: center;
-             padding: 10px 0;
-             background: #333;
-             color: white;
-         }
-         .carousel {
-             width: 100%;
-             overflow: hidden;
-             position: relative;
-         }
-         .carousel img {
-             width: 100%;
-             display: none;
-             transition: transform 0.5s;
-         }
-         .carousel img.active {
-             display: block;
-         }
-         .carousel-buttons {
-             position: absolute;
-             width: 100%;
-             top: 50%;
-             transform: translateY(-50%);
-             display: flex;
-             justify-content: space-between;
-         }
-         .carousel-button {
-             background-color: rgba(0, 0, 0, 0.5);
-             border: none;
-             color: white;
-             padding: 10px;
-             cursor: pointer;
-         }
-         button {
-             background-color: #008CBA; /* Blue */
-             border: none;
-             color: white;
-             padding: 10px 20px;
-             text-align: center;
-             text-decoration: none;
-             display: inline-block;
-             font-size: 16px;
-             margin: 4px 2px;
-             cursor: pointer;
-         }
-         select, input[type="radio"], input[type="text"], input[type="email"] {
-             padding: 10px;
-             margin-top: 5px;
-         }
-         .social-media-links a {
-             margin: 0 10px;
-             color: white;
-             text-decoration: none;
-         }
-         .response {
-             display: none;
-             margin-top: 10px;
-             color: green;
-         }
-     </style>
- </head>
- <body>
-     <header id="main-header">
-         <h1>Welcome to Mountain Majesty</h1>
-         <p>Explore the heights of natural beauty!</p>
-         <form action="/search" method="get">
-             <input type="text" id="search" name="q" placeholder="Search...">
-             <button type="submit">Search</button>
-         </form>
-     </header>
-     <nav id="main-nav">
-         <a href="#about">About</a>
-         <a href="#gallery">Gallery</a>
-         <a href="#tours">Tours</a>
-         <a href="#contact">Contact</a>
-     </nav>
-     <section id="about">
-         <h2>About Mountain Majesty</h2>
-         <p>Mountain Majesty is a premiere destination for mountain lovers. Located in the heart of the great ranges, it offers breathtaking views, exhilarating hikes, and unforgettable experiences. Whether you're seeking a peaceful escape or an adventurous expedition, Mountain Majesty is the perfect getaway.</p>
-         <button id="learn-more-button" onclick="window.location.href='https://example.com/more-about';">Learn More</button>
-     </section>
-     <section id="gallery">
-         <h2>Photo Gallery</h2>
-         <div class="carousel">
-             <img src="https://via.placeholder.com/500x300?text=View+1" alt="Mountain View 1" class="active">
-             <img src="https://via.placeholder.com/500x300?text=View+2" alt="Mountain View 2">
-             <img src="https://via.placeholder.com/500x300?text=View+3" alt="Mountain View 3">
-             <div class="carousel-buttons">
-                 <button class="carousel-button" onclick="previousImage()">Prev</button>
-                 <button class="carousel-button" onclick="nextImage()">Next</button>
-             </div>
-         </div>
-     </section>
-     <section id="tours">
-         <h2>Guided Tours</h2>
-         <p>Join one of our expert guides on a thrilling tour of Mountain Majesty. Choose from a variety of tour options, each offering a unique way to experience the mountains. From leisurely walks to challenging climbs, there's a tour for every level of adventurer.</p>
-         <form action="https://example.com/book-tours" method="get">
-             <label for="tour-type">Choose a tour type:</label>
-             <select id="tour-type" name="tour">
-                 <option value="hike">Hiking</option>
-                 <option value="climb">Climbing</option>
-                 <option value="walk">Walking</option>
-             </select>
-             <div>
-                 <label><input type="radio" name="duration" value="half-day"> Half Day</label>
-                 <label><input type="radio" name="duration" value="full-day"> Full Day</label>
-                 <label><input type="radio" name="duration" value="multiple-days"> Multiple Days</label>
-                 <label><input type="radio" name="duration" value="evening"> Evening</label>
-                 <label><input type="radio" name="duration" value="early-morning"> Early Morning</label>
-             </div>
-             <button type="submit" id="book-tour-button">Book a Tour</button>
-         </form>
-     </section>
-     <section id="contact">
-         <h2>Contact Us</h2>
-         <p>For more information about Mountain Majesty, please contact us:</p>
-         <p>Email: info@mountainmajesty.com</p>
-         <p>Phone: (123) 456-7890</p>
-         <form action="mailto:info@mountainmajesty.com">
-             <button type="submit" id="send-email-button">Send Email</button>
-         </form>
-         <form id="feedback-form">
-             <input type="text" id="name" name="name" placeholder="Your Name" required>
-             <input type="email" id="email" name="email" placeholder="Your Email" required>
-             <button type="submit">Submit</button>
-         </form>
-         <p class="response" id="response-message">Thank you for your submission!</p>
-     </section>
-     <footer id="main-footer">
-         <div class="social-media-links">
-             <a href="https://facebook.com/yourpage" target="_blank">Facebook</a>
-             <a href="https://twitter.com/yourpage" target="_blank">Twitter</a>
-             <a href="https://instagram.com/yourpage" target="_blank">Instagram</a>
-         </div>
-         <p>© 2021 Mountain Majesty. All rights reserved.</p>
-     </footer>
-     <script>
-         let currentImageIndex = 0;
-         const images = document.querySelectorAll('.carousel img');
-         
-         function nextImage() {
-             images[currentImageIndex].classList.remove('active');
-             currentImageIndex = (currentImageIndex + 1) % images.length;
-             images[currentImageIndex].classList.add('active');
-         }
- 
-         function previousImage() {
-             images[currentImageIndex].classList.remove('active');
-             currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-             images[currentImageIndex].classList.add('active');
-         }
- 
-         const form = document.getElementById('feedback-form');
-         const responseMessage = document.getElementById('response-message');
- 
-         form.addEventListener('submit', function(event) {
-             event.preventDefault();
-             responseMessage.style.display = 'none';
-             setTimeout(() => {
-                 responseMessage.style.display = 'block';
-             }, 3000);
-         });
-     </script>
- </body>
- </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Mountain Majesty</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background: #555;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        section {
+            padding: 20px;
+            margin: 10px;
+            border: 1px solid #ccc;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #333;
+            color: white;
+        }
+        .carousel {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel img {
+            width: 100%;
+            display: none;
+            transition: transform 0.5s;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel-buttons {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+        }
+        .carousel-button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+        button {
+            background-color: #008CBA; /* Blue */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        select, input[type="radio"], input[type="text"], input[type="email"] {
+            padding: 10px;
+            margin-top: 5px;
+        }
+        .social-media-links a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+        }
+        .response {
+            display: none;
+            margin-top: 10px;
+            color: green;
+        }
+        /* Additional styles for the success message */
+        #booking-success {
+            display: none; /* Hide the message initially */
+            color: green;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <h1>Welcome to Mountain Majesty</h1>
+        <p>Explore the heights of natural beauty!</p>
+        <form action="/search" method="get">
+            <input type="text" id="search" name="q" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+    </header>
+    <nav id="main-nav">
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#tours">Tours</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <section id="about">
+        <h2>About Mountain Majesty</h2>
+        <p>Mountain Majesty is a premiere destination for mountain lovers. Located in the heart of the great ranges, it offers breathtaking views, exhilarating hikes, and unforgettable experiences. Whether you're seeking a peaceful escape or an adventurous expedition, Mountain Majesty is the perfect getaway.</p>
+        <button id="learn-more-button" onclick="window.location.href='https://example.com/more-about';">Learn More</button>
+    </section>
+    <section id="gallery">
+        <h2>Photo Gallery</h2>
+        <div class="carousel">
+            <img src="https://via.placeholder.com/500x300?text=View+1" alt="Mountain View 1" class="active">
+            <img src="https://via.placeholder.com/500x300?text=View+2" alt="Mountain View 2">
+            <img src="https://via.placeholder.com/500x300?text=View+3" alt="Mountain View 3">
+            <div class="carousel-buttons">
+                <button class="carousel-button" onclick="previousImage()">Prev</button>
+                <button class="carousel-button" onclick="nextImage()">Next</button>
+            </div>
+        </div>
+    </section>
+    <section id="tours">
+        <h2>Guided Tours</h2>
+        <p>Join one of our expert guides on a thrilling tour of Mountain Majesty. Choose from a variety of tour options, each offering a unique way to experience the mountains. From leisurely walks to challenging climbs, there's a tour for every level of adventurer.</p>
+        <form action="https://example.com/book-tours" method="get">
+            <label for="tour-type">Choose a tour type:</label>
+            <select id="tour-type" name="tour">
+                <option value="hike">Hiking</option>
+                <option value="climb">Climbing</option>
+                <option value="walk">Walking</option>
+            </select>
+            <div>
+                <label><input type="radio" name="duration" value="half-day"> Half Day</label>
+                <label><input type="radio" name="duration" value="full-day"> Full Day</label>
+                <label><input type="radio" name="duration" value="multiple-days"> Multiple Days</label>
+                <label><input type="radio" name="duration" value="evening"> Evening</label>
+                <label><input type="radio" name="duration" value="early-morning"> Early Morning</label>
+            </div>
+            <button type="submit" id="book-tour-button">Book a Tour</button>
+            <!-- Success message for booking -->
+            <span id="booking-success">Booking is successful!</span>
+        </form>
+    </section>
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>For more information about Mountain Majesty, please contact us:</p>
+        <p>Email: info@mountainmajesty.com</p>
+        <p>Phone: (123) 456-7890</p>
+        <form action="mailto:info@mountainmajesty.com">
+            <button type="submit" id="send-email-button">Send Email</button>
+        </form>
+        <form id="feedback-form">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <button type="submit">Submit</button>
+        </form>
+        <p class="response" id="response-message">Thank you for your submission!</p>
+    </section>
+    <footer id="main-footer">
+        <div class="social-media-links">
+            <a href="https://facebook.com/yourpage" target="_blank">Facebook</a>
+            <a href="https://twitter.com/yourpage" target="_blank">Twitter</a>
+            <a href="https://instagram.com/yourpage" target="_blank">Instagram</a>
+        </div>
+        <p>© 2021 Mountain Majesty. All rights reserved.</p>
+    </footer>
+    <script>
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
+        
+        function nextImage() {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].classList.add('active');
+        }
+
+        function previousImage() {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            images[currentImageIndex].classList.add('active');
+        }
+
+        const form = document.getElementById('feedback-form');
+        const responseMessage = document.getElementById('response-message');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            responseMessage.style.display = 'none';
+            setTimeout(() => {
+                responseMessage.style.display = 'block';
+            }, 3000);
+        });
+
+        // JavaScript for booking success message
+        const bookTourButton = document.getElementById('book-tour-button');
+        const bookingSuccessMessage = document.getElementById('booking-success');
+
+        bookTourButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent form submission to show message
+            bookingSuccessMessage.style.display = 'none';
+            setTimeout(() => {
+                bookingSuccessMessage.style.display = 'inline';
+            }, 1000); // Show message after 1 second
+        });
+    </script>
+
+</body>
+</html>
